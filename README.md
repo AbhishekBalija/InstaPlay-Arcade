@@ -1,54 +1,48 @@
-# React + TypeScript + Vite
+# InstaPlay Arcade
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+InstaPlay Arcade is a web-based gaming platform tailored for casual gamers and social players. It offers a library of quick, no-download games that can be played solo or with friends.
 
-Currently, two official plugins are available:
+## Problem Statement
+Many players seek instant, lightweight games they can jump into anywhere, without installing apps. They also want simple ways to compete and share results with friends.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
+- **Game Library**: Classic titles like chess, tic‑tac‑toe, memory match, card games, and puzzles.
+- **Instant Play**: No login required—click and play immediately.
+- **User Accounts (Optional)**: Register to track scores, save progress, and manage friend lists.
+- **Multiplayer**: Invite friends via shareable links for real-time matches.
+- **Social Sharing**: Automatically generate share cards for wins/losses and challenges.
 
-## Expanding the ESLint configuration
+## Viral Hooks
+- Challenge links that notify friends directly.
+- Shareable game result cards to social media platforms.
+- Leaderboards and weekly tournaments.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Monetization Strategy
+1. **Ad-Supported (Free)**: Display banner and interstitial ads between games.
+2. **Subscription** ($5/month): Ad-free experience + access to premium game packs.
+3. **In-App Currency**: Purchase tokens for avatar/customization items or tournament entry fees.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Tech Stack
+| Layer              | Technology                                                   |
+|--------------------|--------------------------------------------------------------|
+| **Frontend**       | React (TypeScript + SWC) + Vite, Tailwind CSS, ShadCN UI     |
+| **Backend**        | Node.js with Express.js (TypeScript)                         |
+| **Realtime/WS**    | Socket.io                                                    |
+| **Database**       | MongoDB Atlas                                                |
+| **Auth & Storage** | MongoDB Atlas                                                |
+| **Hosting**        | Vercel (frontend), Heroku (backend)                          |
+| **CI/CD**          | GitHub Actions                                               |
+| **Analytics**      | Plausible or Google Analytics                                |
+| **Ads**            | Google AdSense (web)                                         |
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## Architecture Diagram
+```plaintext
++------------------+          +------------------+          +----------------+
+|   React Frontend | <----->  | Express/Socket.io| <----->  | Mongo DB       |
+| (Vercel)         |          | (Heroku)         |          | (Atlas )       |
++------------------+          +------------------+          +----------------+
+         |                            
+         |                            
+         +-- Social Share / Ads
 ```
